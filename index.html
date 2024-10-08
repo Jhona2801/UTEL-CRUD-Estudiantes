@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="phone">Telefono</label>       
-                    <input type="number" class="form-control" id="phone" placeholder="Ingrese telefono">         
+                    <input type="tel" class="form-control" id="phone" placeholder="Ingrese telefono">         
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="email">Email</label>       
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-6 mb-6">
                     <button class="btn btn-success" id="submit" onclick="addData()">Agregar</button>
-                    <button class="btn btn-primary" id="update" onclick="addData()">Modificar</button>
+                    <button class="btn btn-primary" id="update">Modificar</button>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                             <th>Acción</th>
                         </tr>
                     </thead>
-
+                    <tbody id="newRows"></tbody>
                 </table>
             </div>
         </div>

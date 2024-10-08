@@ -37,8 +37,49 @@ function showData(){
     else {
         studentList = JSON.parse(localStorage.getItem("studentList"));
     }
+
+
+    let html = "";
+    //agrega una nueva fila en tbody por cada elemento del arreglo studentList
+    studentList.forEach(function (element, index){
+    html += "<tr>";
+    html += "<td>" + element.name + "</td>";
+    html += "<td>" + element.phone + "</td>";
+    html += "<td>" + element.email + "</td>";
+    html += '<td><button onclick="deleteData('+index+')" class="btn btn-danger">Borrar</button><button onclick="updateData('+index+')" class="btn btn-warning m-2">Modificar</button></td>';
+    html += "</tr>";
+    });
+
+    document.getElementById("newRows").innerHTML = html;
 }
 
-let html = "";
+//carga toda la informacion cuando la pagina carga
+document.onload = showData();
 
-studentList.foreach()
+//funcion que agreagara information cuando se presione el boton agreagar
+function addData(){
+    //si la forma fue validada:
+    if(validateForm() == true){
+        let name = document.getElementById('name').value,
+        phone = document.getElementById('phone').value,
+        email = document.getElementById('email').value;
+
+        let studentList;
+        if(localStorage.getItem("studentList") == null) {
+            studentList = [];
+        }
+        else {
+        studentList = JSON.parse(localStorage.getItem("studentList"));
+        }
+        studentList.push({
+            name: name,
+            phone: phone,
+            email: email
+        });
+        localStorage.setItem("studentList", JSON.stringify(studentList));
+        showData();
+        document.getElementById("name").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("email").value = "";
+    }
+}
