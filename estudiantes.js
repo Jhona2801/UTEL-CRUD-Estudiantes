@@ -28,7 +28,7 @@ function validateForm() {
     
 }
 
-//funcion para revisar si existe arreglo en local storage y crear el arreglo en caso de no existir
+//pone la information del local storage a manera de HTML como vuepo de la table usando DOM.
 function showData(){
     let studentList;
     if(localStorage.getItem("studentList") == null) {
@@ -53,10 +53,10 @@ function showData(){
     document.getElementById("newRows").innerHTML = html;
 }
 
-//carga toda la informacion cuando la pagina carga
+//carga la informacion desde el local storage cada que la pagina temrina de cargar
 document.onload = showData();
 
-//funcion que agreagara information cuando se presione el boton agreagar
+//funcion que agreagara information cuando se presione el boton agreagar hacia el local storage
 function addData(){
     //si la forma fue validada:
     if(validateForm() == true){
@@ -82,4 +82,41 @@ function addData(){
         document.getElementById("phone").value = "";
         document.getElementById("email").value = "";
     }
+}
+
+//funcion que elimina la informacion del arreglo y el local storage
+
+function deleteData(index){
+    let studentList = JSON.parse(localStorage.getItem("studentList"));
+    studentList.splice(index, 1);
+    localStorage.setItem("studentList", JSON.stringify(studentList));
+    showData();
+}
+
+//funcion que abre un modal para editar la informacion del arreglo y el local storage
+function updateData(index){
+    //mostrata el boton de modificar y escondera el boton de agregar.
+    document.getElementById("submit").style.display = "none";
+    document.getElementById("update").style.display = "block";
+
+    let studentList = JSON.parse(localStorage.getItem("studentList"));
+    document.getElementById("name").value = studentList[index].name;
+    document.getElementById("phone").value = studentList[index].phone;
+    document.getElementById("email").value = studentList[index].email;
+
+    document.getElementById("update").onclick = function(){
+        if(validateForm() == true){
+            studentList[index].name = document.getElementById("name").value;
+            studentList[index].phone = document.getElementById("phone").value;
+            studentList[index].email = document.getElementById("email").value;
+            localStorage.setItem("studentList", JSON.stringify(studentList));
+            showData();
+            //regresa a la visibilidad de los botones
+            document.getElementById("submit").style.display = "block";
+            document.getElementById("update").style.display = "none";
+            document.getElementById("name").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("email").value = "";
+        }
+    }   
 }
