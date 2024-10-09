@@ -14,6 +14,11 @@ function validateForm() {
         return false;
     }
 
+    else if(phone.length < 10) {
+        alert("El teléfono debe tener al menos 10 dígitos");
+        return false;
+    }
+
     if(email == "") {
         alert("El email es obligatorio");
         return false;
@@ -46,7 +51,7 @@ function showData(){
     html += "<td>" + element.name + "</td>";
     html += "<td>" + element.phone + "</td>";
     html += "<td>" + element.email + "</td>";
-    html += '<td><button onclick="deleteData('+index+')" class="btn btn-danger">Borrar</button><button onclick="updateData('+index+')" class="btn btn-warning m-2">Modificar</button></td>';
+    html += '<td><button onclick="deleteData('+index+')" class="btn btn-danger"><i class="bi bi-trash"></i> Borrar</button><button onclick="updateData('+index+')" class="btn btn-warning m-2"><i class="bi bi-pencil"></i> Modificar</button></td>';
     html += "</tr>";
     });
 
@@ -91,6 +96,9 @@ function deleteData(index){
     studentList.splice(index, 1);
     localStorage.setItem("studentList", JSON.stringify(studentList));
     showData();
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
 }
 
 //funcion que abre un modal para editar la informacion del arreglo y el local storage
