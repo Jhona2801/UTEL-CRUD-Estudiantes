@@ -1,5 +1,15 @@
-* {
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
+main{
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .navbar-brand img{
@@ -7,5 +17,42 @@
 
 }
 
+#StudentTable {
+    height:max-content;
+}
+
 #update {
     display: none;
+}
+
+/* #footerContainer {
+    position: fixed;
+    bottom: 0;
+} */
+
+.container-fluid p {
+    margin-left: 8px;
+    text-align: start;
+}
+ul {
+    padding: 0;
+    text-align: left;
+}
+
+li {
+
+    list-style: none;
+}
+
+li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/*  @media screen and (max-width: 1500px) {
+    #footerContainer {
+        position: static;
+        bottom: 0;
+    }
+}  */
