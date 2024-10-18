@@ -40,7 +40,7 @@ function addData() {
       email = document.getElementById("email").value;
 
     //si el local storage esta vacio, se crea un array vacio y se agrega el nuevo estudiante
-    let studentList = JSON.parse(localStorage.getItem("studentList") || []);
+    let studentList = JSON.parse(localStorage.getItem("studentList") || "[]");
     studentList.push({
       name: name,
       phone: phone,
@@ -57,7 +57,7 @@ function addData() {
 }
 //pone la information del local storage a manera de HTML como cuerpo de la tabla usando DOM.
 function showData() {
-  const studentList = JSON.parse(localStorage.getItem("studentList")) || [];
+  const studentList = JSON.parse(localStorage.getItem("studentList")) || "[]";
 
   // crea una variable nueva del tipo string donde se almacenara la informacion que se insertara en el table body
   let html = "";
